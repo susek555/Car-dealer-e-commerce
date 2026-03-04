@@ -1,55 +1,55 @@
-# Projekt z przedmiotu Bazy Danych 2
+# Car Dealer E-commerce System
 Damian D'Souza | Kamil Marszałek | Michał Suski | Michał Szwejk | Piotr Szkoda
 
-# Dokumentacja Systemu Aukcji Samochodowych
+# System Documentation
 
-1. Opracowanie modelu pojęciowego (E-R) ✅
-2. Na podstawie modelu pojęciowego opracowanie relacyjnego logicznego modelu danych ✅
-3. Zaprojektowanie funkcjonalności aplikacji: części operacyjnej oraz części analityczno-raportowej ✅
-4. Optymalizacja modelu logicznego (zwłaszcza denormalizacja) w celu maksymalizacji wydajności systemu ✅
-5. Opracowanie elementów funkcjonalnych na poziomie bazy danych (triggery, procedury składowane) ✅
-6. Dobór technologii bazodanowej, instalacja i konfiguracja środowiska ✅
-7. Dobór technologii realizacji aplikacji, instalacja i konfiguracja środowiska rozwojowego ✅
-8. Opracowanie, wdrożenie i optymalizacja modelu fizycznego ✅
-9. Opracowanie scenariuszy i danych testowych ✅
-10. Opracowanie dokumentacji analityczno-projektowej (w szczególności diagramów modeli danych z opisami) ✅
-11. Opracowanie dokumentacji użytkowej aplikacji ✅
+1. Development of a conceptual (E-R) model ✅
+2. Development of a relational logical data model based on the conceptual model ✅
+3. Design of application functionality: operational part and analytical/reporting part ✅
+4. Optimization of the logical model (especially denormalization) to maximize system performance ✅
+5. Development of functional database-level elements (triggers, stored procedures) ✅
+6. Selection of database technology, environment installation, and configuration ✅
+7. Selection of application technology, development environment installation, and configuration ✅
+8. Development, implementation, and optimization of the physical model ✅
+9. Preparation of test scenarios and test data ✅
+10. Preparation of analytical/design documentation (especially data model diagrams with descriptions) ✅
+11. Preparation of user documentation for the application ✅
 
-## Spis Treści
-1. [Przegląd Systemu](#przegląd-systemu)
-2. [Architektura Systemu](#architektura-systemu)
-3. [Stos Technologiczny](#stos-technologiczny)
-4. [Projekt Bazy Danych](#projekt-bazy-danych)
+## Table of Contents
+1. [System Overview](#system-overview)
+2. [System Architecture](#system-architecture)
+3. [Technology Stack](#technology-stack)
+4. [Database Design](#database-design)
 5. [Backend](#backend)
 6. [Frontend](#frontend)
-7. [Dokumentacja API](#dokumentacja-api)
-8. [Funkcje Real-time](#funkcje-real-time)
+7. [API Documentation](#api-documentation)
+8. [Real-time Features](#real-time-features)
 
-## Przegląd Systemu
+## System Overview
 
-Aplikacja ta umożliwia użytkownikom rejestrację, tworzenie i zarządzanie ofertami sprzedaży samochodów, uczestnictwo w aukcjach oraz kupno pojazdu.
+This application allows users to register, create and manage car sale offers, participate in auctions, and purchase vehicles.
 
-### **Kluczowe Funkcje**
+### **Key Features**
 
-- **Katalog Samochodów**: Kompleksowa baza danych samochodów z producentami, modelami i szczegółowymi specyfikacjami
-- **System Aukcji**: Licytowanie w czasie rzeczywistym
-- **Oferty Sprzedaży**: Sprzedawcy mogą tworzyć i zarządzać ogłoszeniami sprzedaży samochodów
-- **Zarządzanie Obrazami**: Przechowywanie i zarządzanie zdjęciami samochodów w chmurze
-- **Powiadomienia w czasie rzeczywistym**: Aktualizacje w czasie rzeczywistym dla ofert i wydarzeń aukcyjnych oparte na WebSocket
-- **Wyszukiwanie i Filtrowanie**: Zaawansowane możliwości wyszukiwania samochodów i aukcji
+- **Car Catalog**: Comprehensive car database with manufacturers, models, and detailed specifications
+- **Auction System**: Real-time bidding
+- **Sale Offers**: Sellers can create and manage car sale listings
+- **Image Management**: Cloud-based storage and management of car photos
+- **Real-time Notifications**: WebSocket-based live updates for offers and auction events
+- **Search and Filtering**: Advanced search capabilities for cars and auctions
 
 
-## Architektura Systemu
+## System Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │    Backend      │    │   Baza Danych   │
+│   Frontend      │    │    Backend      │    │    Database     │
 │   (Next.js)     │◄──►│   (Go/Gin)      │◄──►│  (PostgreSQL)   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                               │
                               ▼
                        ┌─────────────────┐
-                       │     Redis       │
+                       │      Redis      │
                        │(Message Broker) │
                        └─────────────────┘
                               │
@@ -60,314 +60,314 @@ Aplikacja ta umożliwia użytkownikom rejestrację, tworzenie i zarządzanie ofe
                        └─────────────────┘
 ```
 
-### **Zasady Architektury**
+### **Architecture Principles**
 
-- **Modularność**: Podział na domeny i moduły dla lepszej organizacji kodu
-- **RESTful API**: Standardowe endpointy REST z kompleksową dokumentacją Swagger
-- **Komunikacja czasu rzeczywistego**: Integracja WebSocket dla aktualizacji na żywo
-- **Broker wiadomości**: Redis do przesyłania wiadomości
-- **Cloud Storage**: Zewnętrzne przechowywanie obrazów dla skalowalności
-- **Deployment Oparty na Kontenerach**: Konteneryzacja dla spójnych środowisk
+- **Modularity**: Division into domains and modules for better code organization
+- **RESTful API**: Standard REST endpoints with comprehensive Swagger documentation
+- **Real-time Communication**: WebSocket integration for live updates
+- **Message Broker**: Redis for message passing
+- **Cloud Storage**: External image storage for scalability
+- **Container-based Deployment**: Containerization for consistent environments
 
-## Stos Technologiczny
+## Technology Stack
 
-### **Technologie Backendowe**
-- **Go 1.21+**: Główny język backendowy
-- **Gin Framework**: Framework webowy HTTP dla Go
-- **GORM**: Biblioteka object-relational mapping
-- **Redis**: Broker wiadomości
-- **JWT**: JSON Web Tokens do uwierzytelniania
-- **WebSocket**: Komunikacja real-time przez gorilla/websocket
-- **Swagger**: Dokumentacja API z gin-swagger
-- **Cloudinary**: Przechowywanie obrazów w chmurze
-- **bcrypt**: Hashowanie haseł
+### **Backend Technologies**
+- **Go 1.21+**: Main backend language
+- **Gin Framework**: HTTP web framework for Go
+- **GORM**: Object-relational mapping library
+- **Redis**: Message broker
+- **JWT**: JSON Web Tokens for authentication
+- **WebSocket**: Real-time communication via gorilla/websocket
+- **Swagger**: API documentation with gin-swagger
+- **Cloudinary**: Cloud image storage
+- **bcrypt**: Password hashing
 
-### **Technologie Frontendowe**
-- **Next.js 14**: Framework React z App Router
+### **Frontend Technologies**
+- **Next.js 14**: React framework with App Router
 - **TypeScript**: Type-safe JavaScript
-- **React 18**: Biblioteka UI z najnowszymi funkcjami
-- **NextAuth.js**: Framework uwierzytelniania
+- **React 18**: UI library with the latest features
+- **NextAuth.js**: Authentication framework
 - **TailwindCSS**: Utility-first CSS framework
 
-### **Technologie Bazodanowe**
-- **PostgreSQL 15+**: Główna baza danych
-- **pg_ivm**: Rozszerzenie Incremental View Maintenance
-- **Custom Triggers**: Logika biznesowa na poziomie bazy danych
-- **Widoki**: Materialized views dla optymalizacji zapytań
+### **Database Technologies**
+- **PostgreSQL 15+**: Main database
+- **pg_ivm**: Incremental View Maintenance extension
+- **Custom Triggers**: Business logic at the database level
+- **Views**: Materialized views for query optimization
 
-### **DevOps i Deployment**
-- **Docker**: Platforma konteneryzacji
-- **Git**: System kontroli wersji
+### **DevOps and Deployment**
+- **Docker**: Containerization platform
+- **Git**: Version control system
 
-## Projekt Bazy Danych
+## Database Design
 
-Baza danych zaprojektowana z wykorzystaniem PostgreSQL, z uwzględnieniem zasad normalizacji i integralności danych.
+The database is designed using PostgreSQL with normalization principles and data integrity in mind.
 
-### **Model Pojęciowy**
+### **Conceptual Model**
 ![er.png](images/er.png)
 
-### **Model Relacyjny**
+### **Relational Model**
 
 ![relational.png](images/relational.png)
 
-### **Struktura Plików Bazy Danych**
+### **Database File Structure**
 
 ```
 database/
-├── schema.sql          # Podstawowe definicje tabel i typów danych
-├── triggers.sql        # Triggery bazy danych dla logiki biznesowej
-├── init-pg-ivm.sql     # Materialized views z rozszerzeniem pg_ivm
-├── init-test-db.sql    # Inicjalizacja testowej bazy danych
-└── Dockerfile          # Konfiguracja kontenera bazy danych
+├── schema.sql          # Basic table and data type definitions
+├── triggers.sql        # Database triggers for business logic
+├── init-pg-ivm.sql     # Materialized views with pg_ivm extension
+├── init-test-db.sql    # Test database initialization
+└── Dockerfile          # Database container configuration
 ```
 
 
-### **Typy Danych i Enumy**
+### **Data Types and Enums**
 
-Baza danych używa niestandardowych enumów PostgreSQL dla bezpieczeństwa typów:
+The database uses custom PostgreSQL enums for type safety:
 
-- **SELECTOR**: Typ użytkownika (`'P'` dla Osoby, `'C'` dla Firmy)
-- **OFFER_STATUS**: Stany ofert sprzedaży (`'pending'`, `'ready'`, `'published'`, `'sold'`, `'expired'`)
-- **COLOR**: Kolory samochodów (20 predefiniowanych kolorów plus `'other'`)
-- **FUEL_TYPE**: Typy paliwa silnika (`'diesel'`, `'petrol'`, `'electric'`, `'hybrid'`, itp.)
-- **TRANSMISSION**: Typy skrzyni biegów (`'manual'`, `'automatic'`, `'cvt'`, `'dual_clutch'`)
-- **DRIVE**: Systemy napędu (`'fwd'`, `'rwd'`, `'awd'`)
-- **DOCUMENT_TYPE**: Klasyfikacje plików (`'invoice'`, `'receipt'`, `'other'`)
+- **SELECTOR**: User type (`'P'` for Person, `'C'` for Company)
+- **OFFER_STATUS**: Sale offer states (`'pending'`, `'ready'`, `'published'`, `'sold'`, `'expired'`)
+- **COLOR**: Car colors (20 predefined colors plus `'other'`)
+- **FUEL_TYPE**: Engine fuel types (`'diesel'`, `'petrol'`, `'electric'`, `'hybrid'`, etc.)
+- **TRANSMISSION**: Gearbox types (`'manual'`, `'automatic'`, `'cvt'`, `'dual_clutch'`)
+- **DRIVE**: Drive systems (`'fwd'`, `'rwd'`, `'awd'`)
+- **DOCUMENT_TYPE**: File classifications (`'invoice'`, `'receipt'`, `'other'`)
 
-### **Zaawansowane Funkcje Bazy Danych**
+### **Advanced Database Features**
 
-#### Triggery (triggers.sql)
-- **Trigger Tworzenia Aukcji**: Automatycznie ustawia `is_auction = TRUE` kiedy rekord aukcji jest tworzony
-- **Trigger Usuwania Użytkownika**: Czyści niesprzedane oferty gdy użytkownik jest usuwany
+#### Triggers (triggers.sql)
+- **Auction Creation Trigger**: Automatically sets `is_auction = TRUE` when an auction record is created
+- **User Deletion Trigger**: Cleans up unsold offers when a user is deleted
 
-#### Optymalizacje Wydajności
-- **Indeksy Unikalne**: Zoptymalizowane ograniczenia na materialized views
-- **Indeksy Złożone**: Indeksy wielokolumnowe dla częstych zapytań
-- **Ograniczenia Foreign Key**: Integralność referencyjna z kaskadowymi usunięciami
-- **Ograniczenia Check**: Walidacja danych na poziomie bazy danych
+#### Performance Optimizations
+- **Unique Indexes**: Optimized constraints on materialized views
+- **Composite Indexes**: Multi-column indexes for frequent queries
+- **Foreign Key Constraints**: Referential integrity with cascade deletes
+- **Check Constraints**: Database-level data validation
 
-### **Denormalizacja**
+### **Denormalization**
 
-Projekt wykorzystuje rozszerzenie **pg_ivm (Incremental View Maintenance)** do tworzenia inteligentnych widoków, które automatycznie utrzymują spójność danych:
+The design uses the **pg_ivm (Incremental View Maintenance)** extension to create smart views that automatically keep data consistent:
 
 #### Materialized Views:
 
-- **offer_creators**: Szybkie wyszukiwanie twórców ofert
-- **offer_bidders**: Aktywni licytujący w opublikowanych aukcjach
-- **offer_likers**: Użytkownicy, którzy polubili opublikowane oferty
-- **user_offer_interactions**: Unia wszystkich relacji użytkownik-oferta
-- **regular_sale_offer_view**: Kompleksowy widok ofert nie-aukcyjnych
-- **auction_sale_offer_view**: Kompleksowy widok ofert aukcyjnych
-- **sale_offer_view**: Połączony widok wszystkich ofert sprzedaży ze szczegółami samochodów
+- **offer_creators**: Fast lookup of offer creators
+- **offer_bidders**: Active bidders in published auctions
+- **offer_likers**: Users who liked published offers
+- **user_offer_interactions**: Union of all user-offer relationships
+- **regular_sale_offer_view**: Comprehensive view of non-auction offers
+- **auction_sale_offer_view**: Comprehensive view of auction offers
+- **sale_offer_view**: Combined view of all sale offers with car details
 
-#### Wydajność
-- **Eliminacja złożonych JOIN-ów**: Materialized views przechowują już połączone dane z wielu tabel
-- **Wstępne obliczenia sum**: Liczby ofert, średnie ceny, statystyki licytacji
-- **Aktualizacje przyrostowe**: pg_ivm aktualizuje tylko zmienione części widoków
+#### Performance
+- **Elimination of complex JOINs**: Materialized views already store joined data from multiple tables
+- **Precomputed aggregates**: Offer counts, average prices, bidding statistics
+- **Incremental updates**: pg_ivm updates only changed parts of views
 
-#### Skalowalność
-- **Redukcja obciążenia CPU**: Brak konieczności wykonywania kosztownych JOIN-ów przy każdym zapytaniu
-- **Równoległy dostęp**: Odczyt z materialized views nie blokuje operacji transakcyjnych
+#### Scalability
+- **Reduced CPU load**: No need to execute costly JOINs on every query
+- **Parallel access**: Reading from materialized views does not block transactional operations
 
-#### Spójność
-- **Automatyczna synchronizacja**: pg_ivm gwarantuje spójność danych w czasie rzeczywistym
-- **Integralność**: Aktualizacje widoków bez dodatkowych operacji
+#### Consistency
+- **Automatic synchronization**: pg_ivm guarantees real-time data consistency
+- **Integrity**: View updates without additional operations
 
-#### Zalety
-- Dramatyczna poprawa wydajności zapytań odczytu
-- Uproszczenie logiki aplikacyjnej
-- Lepsza skalowalność przy dużych zbiorach danych
+#### Advantages
+- Significant read query performance improvement
+- Simplified application logic
+- Better scalability with large datasets
 
-#### Wady
-- Zwiększone zużycie przestrzeni dyskowej
-- Potencjalne opóźnienia w aktualizacji widoków
+#### Drawbacks
+- Increased disk space usage
+- Potential view update latency
 
-### **Funkcje Integralności Danych**
+### **Data Integrity Features**
 
-- **Kaskadowe Usunięcia**: Powiązane rekordy są odpowiednio czyszczone
-- **Wartości Domyślne**: Soft deletion używające domyślnego użytkownika (ID: 1) dla integralności referencyjnej
-- **Ograniczenia Zakresów**: Walidowane zakresy dla pól numerycznych (drzwi: 1-6, miejsca: 2-100, itp.)
-- **Ograniczenia Unikalne**: Zapobieganie duplikowaniu danych gdzie wymagane
-- **Ograniczenia Deferrable**: Wsparcie dla złożonych scenariuszy transakcyjnych
+- **Cascade Deletes**: Related records are cleaned up appropriately
+- **Default Values**: Soft deletion using a default user (ID: 1) for referential integrity
+- **Range Constraints**: Validated ranges for numeric fields (doors: 1-6, seats: 2-100, etc.)
+- **Unique Constraints**: Duplicate prevention where required
+- **Deferrable Constraints**: Support for complex transaction scenarios
 
 ## Backend
 
-Backend aplikacji jest zbudowany w Go, używając frameworka Gin i GORM do interakcji z bazą danych PostgreSQL.
+The backend is built in Go, using the Gin framework and GORM for interaction with the PostgreSQL database.
 
-### **Struktura Domen**
+### **Domain Structure**
 
 ```
 internal/domains/
-├── auction/          # Zarządzanie aukcjami
-├── auth/             # Uwierzytelnianie i autoryzacja
-├── bid/              # Operacje licytowania
-├── car/              # Zarządzanie katalogiem samochodów
-├── generic/          # Funkcjonalności wspólne dla wszystkich domen
-├── image/            # Obsługa obrazów
-├── liked_offer/      # Zarządzanie polubionymi ofertami
-├── manufacturer/     # Zarządzanie producentami samochodów
-├── model/            # Zarządzanie modelami samochodów
-├── notification/     # Powiadomienia real-time
-├── purchase/         # Zarządzanie zakupami i transakcjami
-├── refresh_token/    # Zarządzanie tokenami odświeżania
-├── review/           # System recenzji
-├── sale_offer/       # Zarządzanie ofertami sprzedaży
-├── scheduler/        # Zadania zaplanowane i cykliczne
-├── user/             # Zarządzanie użytkownikami
-└── ws/               # Zarządzanie połączeniami WebSocket
+├── auction/          # Auction management
+├── auth/             # Authentication and authorization
+├── bid/              # Bidding operations
+├── car/              # Car catalog management
+├── generic/          # Functionality shared across domains
+├── image/            # Image handling
+├── liked_offer/      # Liked offers management
+├── manufacturer/     # Car manufacturer management
+├── model/            # Car model management
+├── notification/     # Real-time notifications
+├── purchase/         # Purchase and transaction management
+├── refresh_token/    # Refresh token management
+├── review/           # Review system
+├── sale_offer/       # Sale offer management
+├── scheduler/        # Scheduled and recurring tasks
+├── user/             # User management
+└── ws/               # WebSocket connection management
 ```
 
 
-### **Kluczowe Komponenty**
+### **Key Components**
 
-#### Warstwa Modeli
-- **Modele Bazy Danych**: Definicje modeli oparte na GORM
-- **Walidacja**: Walidacja i sanityzacja danych wejściowych
-- **Relacje**: Złożone relacje między encjami
+#### Model Layer
+- **Database Models**: GORM-based model definitions
+- **Validation**: Input validation and sanitization
+- **Relationships**: Complex relationships between entities
 
-#### Warstwa Domeny
-- **Logika Biznesowa**: Podstawowe reguły biznesowe i operacje
-- **Usługi**: Implementacje usług specyficznych dla domeny
-- **Repozytoria**: Abstrakcja dostępu do danych
+#### Domain Layer
+- **Business Logic**: Core business rules and operations
+- **Services**: Domain-specific service implementations
+- **Repositories**: Data access abstraction
 
-#### Warstwa API
-- **Routes**: Definicje endpointów RESTful
-- **Middleware**: Uwierzytelnianie, CORS, logowanie
-- **Handlers**: Przetwarzanie żądań/odpowiedzi HTTP
+#### API Layer
+- **Routes**: RESTful endpoint definitions
+- **Middleware**: Authentication, CORS, logging
+- **Handlers**: HTTP request/response processing
 
-### **Przepływ Uwierzytelniania**
+### **Authentication Flow**
 
-1. **Rejestracja**: Użytkownik tworzy konto (osoba lub firma)
-2. **Logowanie**: Walidacja danych uwierzytelniających, wydanie tokenów JWT
-3. **Odświeżanie Tokenów**: Automatyczne odnawianie tokenów
-4. **Autoryzacja**: Kontrola dostępu do chronionych zasobów
+1. **Registration**: User creates an account (person or company)
+2. **Login**: Credential validation and JWT token issuance
+3. **Token Refresh**: Automatic token renewal
+4. **Authorization**: Access control for protected resources
 
-### **Funkcje Real-time**
+### **Real-time Features**
 
-- **Połączenia WebSocket**: Trwałe połączenia dla aktualizacji na żywo
-- **System Powiadomień**: Powiadomienia o ofertach w czasie rzeczywistym
-- **Zarządzanie Połączeniami**: Śledzenie sesji użytkowników
+- **WebSocket Connections**: Persistent connections for live updates
+- **Notification System**: Real-time offer notifications
+- **Connection Management**: User session tracking
 
 ## Frontend
 
-Frontend aplikacji jest zbudowany w Next.js, wykorzystując TypeScript i TailwindCSS do tworzenia responsywnego interfejsu użytkownika.
+The frontend is built in Next.js, using TypeScript and TailwindCSS to create a responsive user interface.
 
-### **Struktura Aplikacji**
+### **Application Structure**
 
 ```
 app/
-├── (home)/              # Strona główna aplikacji
-├── login/               # Logowanie użytkowników
-├── signup/              # Rejestracja nowych użytkowników
-├── account/             # Zarządzanie kontem użytkownika
-│   ├── activity/        # Historia aktywności użytkownika
-│   ├── favorites/       # Polubione oferty
-│   ├── listings/        # Ogłoszenia użytkownika
-│   ├── notifications/   # Powiadomienia
-│   ├── reviews/         # Recenzje i opinie
-│   └── settings/        # Ustawienia profilu
-├── offer/               # Zarządzanie ofertami sprzedaży
-│   ├── add/             # Dodawanie nowych ofert
-│   └── [id]/            # Szczegóły konkretnej oferty
-├── seller/              # Profile sprzedawców
-│   └── [sellerId]/      # Profil konkretnego sprzedawcy
-├── actions/             # Server Actions dla Next.js
-├── api/                 # API Routes (handlery route API)
-├── lib/                 # Biblioteki i utilities
-├── test/                # Komponenty testowe
-└── ui/                  # Komponenty interfejsu użytkownika
+├── (home)/              # Application homepage
+├── login/               # User login
+├── signup/              # New user registration
+├── account/             # User account management
+│   ├── activity/        # User activity history
+│   ├── favorites/       # Liked offers
+│   ├── listings/        # User listings
+│   ├── notifications/   # Notifications
+│   ├── reviews/         # Reviews and feedback
+│   └── settings/        # Profile settings
+├── offer/               # Sale offer management
+│   ├── add/             # Add new offers
+│   └── [id]/            # Details of a specific offer
+├── seller/              # Seller profiles
+│   └── [sellerId]/      # Specific seller profile
+├── actions/             # Server Actions for Next.js
+├── api/                 # API Routes (API route handlers)
+├── lib/                 # Libraries and utilities
+├── test/                # Test components
+└── ui/                  # User interface components
 ```
 
-### **Kluczowe Funkcje**
+### **Key Features**
 
-#### Integracja Uwierzytelniania
-- **NextAuth.js**: Bezpieczne uwierzytelnianie z JWT
-- **Zarządzanie Sesjami**: Automatyczne odświeżanie tokenów
-- **Ochrona Route**: Kontrola dostępu oparta na middleware
+#### Authentication Integration
+- **NextAuth.js**: Secure authentication with JWT
+- **Session Management**: Automatic token refresh
+- **Route Protection**: Middleware-based access control
 
-#### Interfejs Użytkownika
-- **Biblioteka Komponentów**: Komponenty UI wielokrotnego użytku
-- **Obsługa Formularzy**: Type-safe walidacja formularzy
-- **Upload Obrazów**: Integracja z Cloudinary
+#### User Interface
+- **Component Library**: Reusable UI components
+- **Form Handling**: Type-safe form validation
+- **Image Upload**: Cloudinary integration
 
-#### Zarządzanie Stanem
-- **Server Components**: Zoptymalizowane pobieranie danych
-- **Client Components**: Interaktywne elementy UI
-- **Integracja API**: Klient HTTP oparty na Axios
-
-
-## Dokumentacja API
-
-### **Główne Endpointy**
+#### State Management
+- **Server Components**: Optimized data fetching
+- **Client Components**: Interactive UI elements
+- **API Integration**: Axios-based HTTP client
 
 
-#### Uwierzytelnianie
+## API Documentation
+
+### **Main Endpoints**
+
+
+#### Authentication
 ```
-POST /auth/register          - Rejestracja użytkownika
-POST /auth/login             - Uwierzytelnianie użytkownika
-POST /auth/refresh           - Odświeżanie tokenów
-PUT  /auth/change-password   - Zmiana hasła
-POST /logout                 - Wylogowanie użytkownika
-```
-
-#### Zarządzanie Użytkownikami
-```
-GET    /users/              - Lista wszystkich użytkowników
-PUT    /users/              - Aktualizacja profilu użytkownika
-GET    /users/id/{id}       - Pobranie użytkownika po ID
-GET    /users/email/{email} - Pobranie użytkownika po emailu
-DELETE /users/{id}          - Usunięcie użytkownika
+POST /auth/register          - User registration
+POST /auth/login             - User authentication
+POST /auth/refresh           - Token refresh
+PUT  /auth/change-password   - Password change
+POST /logout                 - User logout
 ```
 
-#### Oferty Sprzedaży
+#### User Management
 ```
-POST /sale-offer/                  - Tworzenie oferty sprzedaży
-PUT  /sale-offer/                  - Aktualizacja oferty sprzedaży
-PUT  /sale-offer/publish/{id}      - Publikacja oferty sprzedaży
-POST /sale-offer/filtered          - Filtrowanie ofert sprzedaży
-POST /sale-offer/my-offers         - Moje oferty sprzedaży
-POST /sale-offer/liked-offers      - Polubione oferty
-GET  /sale-offer/id/{id}           - Szczegóły oferty po ID
-GET  /sale-offer/offer-types       - Typy ofert
-GET  /sale-offer/order-keys        - Klucze sortowania
-POST /sale-offer/buy/{id}          - Kup teraz
+GET    /users/              - List all users
+PUT    /users/              - Update user profile
+GET    /users/id/{id}       - Get user by ID
+GET    /users/email/{email} - Get user by email
+DELETE /users/{id}          - Delete user
 ```
 
-#### Aukcje
+#### Sale Offers
 ```
-POST /auction/              - Tworzenie aukcji
-PUT  /auction/              - Aktualizacja aukcji
-POST /auction/buy-now/{id}  - Kup teraz w aukcji
-```
-
-#### Licytowanie
-```
-POST /bid/                                              - Złożenie oferty
-GET  /bid/                                              - Lista wszystkich ofert
-GET  /bid/{id}                                          - Szczegóły oferty po ID
-GET  /bid/bidder/{id}                                   - Oferty po ID licytującego
-GET  /bid/auction/{id}                                  - Oferty w aukcji
-GET  /bid/highest/{id}                                  - Najwyższa oferta
-GET  /bid/highest/auction/{auctionID}/bidder/{bidderID} - Najwyższa oferta użytkownika
+POST /sale-offer/                  - Create sale offer
+PUT  /sale-offer/                  - Update sale offer
+PUT  /sale-offer/publish/{id}      - Publish sale offer
+POST /sale-offer/filtered          - Filter sale offers
+POST /sale-offer/my-offers         - My sale offers
+POST /sale-offer/liked-offers      - Liked offers
+GET  /sale-offer/id/{id}           - Offer details by ID
+GET  /sale-offer/offer-types       - Offer types
+GET  /sale-offer/order-keys        - Sorting keys
+POST /sale-offer/buy/{id}          - Buy now
 ```
 
+#### Auctions
+```
+POST /auction/              - Create auction
+PUT  /auction/              - Update auction
+POST /auction/buy-now/{id}  - Buy now in auction
+```
 
-### **Funkcje API**
+#### Bidding
+```
+POST /bid/                                              - Place bid
+GET  /bid/                                              - List all bids
+GET  /bid/{id}                                          - Bid details by ID
+GET  /bid/bidder/{id}                                   - Bids by bidder ID
+GET  /bid/auction/{id}                                  - Bids in auction
+GET  /bid/highest/{id}                                  - Highest bid
+GET  /bid/highest/auction/{auctionID}/bidder/{bidderID} - User's highest bid
+```
 
-- **Dokumentacja Swagger**: Interaktywny eksplorator API pod `/swagger/`
-- **Modele Request/Response**: Kompleksowe schematy danych
-- **Obsługa Błędów**: Standaryzowane odpowiedzi błędów
-- **Paginacja**: Paginacja oparta na kursorze dla dużych zbiorów danych
-- **Filtrowanie**: Zaawansowane parametry zapytań do filtrowania danych
-- **Sortowanie**: Elastyczne opcje sortowania
 
-## Funkcje Real-time
+### **API Features**
 
-### **Implementacja WebSocket**
+- **Swagger Documentation**: Interactive API explorer at `/swagger/`
+- **Request/Response Models**: Comprehensive data schemas
+- **Error Handling**: Standardized error responses
+- **Pagination**: Cursor-based pagination for large datasets
+- **Filtering**: Advanced query parameters for data filtering
+- **Sorting**: Flexible sorting options
 
-System implementuje funkcje real-time używając połączeń WebSocket:
+## Real-time Features
 
-#### Typy Wydarzeń
+### **WebSocket Implementation**
+
+The system implements real-time features using WebSocket connections:
+
+#### Event Types
 
 ```json
 {
