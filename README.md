@@ -13,26 +13,26 @@ Damian D'Souza | Kamil Marszałek | Michał Suski | Michał Szwejk | Piotr Szkod
 9. [API Documentation](#api-documentation)
 10. [Real-time Features](#real-time-features)
 
-# Demo
+## Demo
 
-## Main Page
+### Main Page
 ![Offers page 1](images/offers-1.png)
 ![Offers page 2](images/offers-2.png)
 ![Mazda showcase](images/Mazda.png)
 
-## Adding an Offer
+### Adding an Offer
 ![New offer 1](images/new-1.png)
 ![New offer 2](images/new-2.png)
 ![New offer 3](images/new-3.png)
 
-## User Account
+### User Account
 ![Account page](images/account.png)
 ![Reviews page](images/reviews.png)
 ![My car](images/my-car.png)
 ![Bought cars](images/bought.png)
 
 
-# Stages of the Project
+## Stages of the Project
 
 1. Development of a conceptual (E-R) model ✅
 2. Development of a relational logical data model based on the conceptual model ✅
