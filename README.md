@@ -1,7 +1,38 @@
 # Car Dealer E-commerce System
 Damian D'Souza | Kamil Marszałek | Michał Suski | Michał Szwejk | Piotr Szkoda
 
-# System Documentation
+## Table of Contents
+1. [Demo](#demo)
+2. [Stages of the Project](#stages-of-the-project)
+3. [System Overview](#system-overview)
+4. [System Architecture](#system-architecture)
+5. [Technology Stack](#technology-stack)
+6. [Database Design](#database-design)
+7. [Backend](#backend)
+8. [Frontend](#frontend)
+9. [API Documentation](#api-documentation)
+10. [Real-time Features](#real-time-features)
+
+# Demo
+
+## Main Page
+![Offers page 1](images/offers-1.png)
+![Offers page 2](images/offers-2.png)
+![Mazda showcase](images/Mazda.png)
+
+## Adding an Offer
+![New offer 1](images/new-1.png)
+![New offer 2](images/new-2.png)
+![New offer 3](images/new-3.png)
+
+## User Account
+![Account page](images/account.png)
+![Reviews page](images/reviews.png)
+![My car](images/my-car.png)
+![Bought cars](images/bought.png)
+
+
+# Stages of the Project
 
 1. Development of a conceptual (E-R) model ✅
 2. Development of a relational logical data model based on the conceptual model ✅
@@ -15,15 +46,7 @@ Damian D'Souza | Kamil Marszałek | Michał Suski | Michał Szwejk | Piotr Szkod
 10. Preparation of analytical/design documentation (especially data model diagrams with descriptions) ✅
 11. Preparation of user documentation for the application ✅
 
-## Table of Contents
-1. [System Overview](#system-overview)
-2. [System Architecture](#system-architecture)
-3. [Technology Stack](#technology-stack)
-4. [Database Design](#database-design)
-5. [Backend](#backend)
-6. [Frontend](#frontend)
-7. [API Documentation](#api-documentation)
-8. [Real-time Features](#real-time-features)
+
 
 ## System Overview
 
